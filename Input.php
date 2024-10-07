@@ -1,6 +1,10 @@
 <?php
 
 class Input {
+
+    const REQUIRED_TRUE = true;
+    const REQUIRED_FALSE = false;
+
     // *******************************************************************************
     // *                                                                             *
     // *                                                                             *
@@ -26,7 +30,7 @@ class Input {
         ?>
             <!-- Campo de texto -->
             <div class="<?= $wrapperClass ?>">
-                <label for="<?= htmlspecialchars($name) ?>" class="form-label"><?= htmlspecialchars($label) ?>:</label>
+                <label for="<?= htmlspecialchars($name) ?>" class="form-label"><?= htmlspecialchars($label) ?><?= $required ? ' *' : ''; ?></label>
                 <input 
                     type="<?= htmlspecialchars($type) ?>" 
                     id="<?= htmlspecialchars($name) ?>" 
@@ -60,9 +64,9 @@ class Input {
         $name = "", 
         $label = "Seleccione un archivo",
         $errors = [],
+        $required = false,
         $wrapperClass = ["form-group", "mb-3"], 
         $inputClass = ["form-control"], 
-        $required = false,
         $accept = "image/png,image/jpeg,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" // Tipos de archivos aceptados por defecto
     ) {
         // Convertir el array de clases del wrapper en un string
@@ -77,7 +81,7 @@ class Input {
         ?>
             <!-- Campo de archivo -->
             <div class="<?= $wrapperClass ?>">
-                <label for="<?= $name ?>" class="form-label"><?= htmlspecialchars($label) ?></label>
+                <label for="<?= $name ?>" class="form-label"><?= htmlspecialchars($label) ?><?= $required ? ' *' : ''; ?></label>
                 <input 
                     class="<?= $inputClass ?>" 
                     type="file" 
@@ -106,14 +110,14 @@ class Input {
     // *                             SELECT                                        *
     // *                                                                           *
     // *****************************************************************************
-    public static function renderSelectFile(
+    public static function renderSelect(
         $name = "",
         $label = "Selecciona una opción",
         $errors = [],
         $options = [],
+        $required = false,
         $wrapperClass = ["form-group", "mb-3"],
-        $selectClass = ["form-select"],
-        $required = false
+        $selectClass = ["form-select"]
     ) {
         // Convertir el array de clases del wrapper en un string
         $wrapperClass = implode(' ', array_map('htmlspecialchars', $wrapperClass));
@@ -130,7 +134,7 @@ class Input {
         ?>
             <!-- Campo de selección -->
             <div class="<?= $wrapperClass ?>">
-                <label for="<?= $name ?>" class="form-label"><?= htmlspecialchars($label) ?> *</label>
+                <label for="<?= $name ?>" class="form-label"><?= htmlspecialchars($label) ?><?= $required ? ' *' : ''; ?></label>
                 <select id="<?= $name ?>" class="<?= htmlspecialchars($selectClass) ?>" name="<?= $name ?>" <?= $isRequired ?>>
                     <?php
                         // Generar las opciones del select
@@ -170,9 +174,9 @@ class Input {
         $label = "Selecciona opciones",
         $errors = [],
         $options = [],
+        $required = false,
         $wrapperClass = ["form-group", "mb-3"],
-        $checkboxClass = ["form-check"],
-        $required = false
+        $checkboxClass = ["form-check"]
     ) {
         // Convertir el array de clases del wrapper en un string
         $wrapperClass = implode(' ', array_map('htmlspecialchars', $wrapperClass));
@@ -187,7 +191,7 @@ class Input {
 
         ?>
         <div class="<?= $wrapperClass ?>">
-            <label class="form-label"><?= htmlspecialchars($label) ?> <?= $isRequired ? '*' : '' ?></label>
+            <label class="form-label"><?= htmlspecialchars($label) ?><?= $required ? ' *' : ''; ?></label>
             <?php
                 // Generar los checkboxes
                 foreach ($options as $value => $text) {
@@ -246,7 +250,7 @@ class Input {
 
         ?>
         <div class="<?= $wrapperClass ?>">
-            <label for="<?= htmlspecialchars($name) ?>" class="form-label"><?= htmlspecialchars($label) ?> <?= $isRequired ? '*' : '' ?></label>
+            <label for="<?= htmlspecialchars($name) ?>" class="form-label"><?= htmlspecialchars($label) ?><?= $required ? ' *' : ''; ?></label>
             <textarea 
                 id="<?= htmlspecialchars($name) ?>" 
                 name="<?= htmlspecialchars($name) ?>" 

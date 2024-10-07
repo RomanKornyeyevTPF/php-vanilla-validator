@@ -95,7 +95,7 @@ if (isset($_POST['enviar'])) {
                         'nombre', // name
                         'Nombre Completo', // label
                         $errors, // errores personalizados
-                        false, // required (OPTIONAL: false by default)
+                        Input::REQUIRED_TRUE, // required (OPTIONAL: false by default)
                         ['form-group', 'mb-3', 'col-md-6'], // Array de clases para el wrapper (OPTIONAL: ['mb-3'] by default)
                         'Ingrese su nombre completo', //placeholder (OPTIONAL: label value by default)
                         ['form-control'], //input class (OPTIONAL: form-control by default)
@@ -107,7 +107,7 @@ if (isset($_POST['enviar'])) {
                         'password',
                         'Contraseña',
                         $errors,
-                        false,
+                        Input::REQUIRED_TRUE,
                         ['form-group', 'mb-3', 'col-md-6']
                     );
                 ?>
@@ -120,7 +120,7 @@ if (isset($_POST['enviar'])) {
                         'email',
                         'Email',
                         $errors,
-                        false,
+                        Input::REQUIRED_FALSE,
                         ['form-group', 'mb-3', 'col-md-9']
                     );
 
@@ -130,7 +130,7 @@ if (isset($_POST['enviar'])) {
                         'edad',
                         'Edad',
                         $errors,
-                        false,
+                        Input::REQUIRED_FALSE,
                         ['form-group', 'mb-3', 'col-md-3']
                     );
                 ?>
@@ -143,7 +143,7 @@ if (isset($_POST['enviar'])) {
                         'fecha_nac',
                         'Fecha de nacimiento',
                         $errors,
-                        false,
+                        Input::REQUIRED_FALSE,
                         ['form-group', 'mb-3', 'col-md-6']
                     );
 
@@ -152,9 +152,9 @@ if (isset($_POST['enviar'])) {
                         'foto', 
                         'Sube tu documento', 
                         $errors,
+                        Input::REQUIRED_FALSE, // Indica que es requerido (OPTIONAL: false by default)
                         ['form-group', 'mb-3', 'col-md-6'],
-                        ['form-control'], 
-                        false,  // Indica que es requerido (OPTIONAL: false by default)
+                        ['form-control'],
                         'image/png,application/pdf'  // Acepta solo PNG y PDF (OPTIONAL: accept png, jpf, pdf and word by default)
                     );
                 ?>
@@ -163,7 +163,7 @@ if (isset($_POST['enviar'])) {
                 <?php
                 
                     // Campo select
-                    Input::renderSelectFile(
+                    Input::renderSelect(
                         'genero', 
                         'Género',
                         $errors,
@@ -172,7 +172,9 @@ if (isset($_POST['enviar'])) {
                             '2' => 'Masculino', 
                             '3' => 'Femenino'
                         ],
+                        Input::REQUIRED_FALSE,
                         ['form-group', 'mb-3', 'col-md-6'],
+                        ['form-select']
                     );
 
                     // Campo contraseña
@@ -181,7 +183,7 @@ if (isset($_POST['enviar'])) {
                         'telefono',
                         'Teléfono',
                         $errors,
-                        false,
+                        Input::REQUIRED_FALSE,
                         ['form-group', 'mb-3', 'col-md-6']
                     );
                 
@@ -196,7 +198,8 @@ if (isset($_POST['enviar'])) {
                         $errors,
                         [
                             '0' => 'Términos y condiciones'
-                        ], 
+                        ],
+                        Input::REQUIRED_TRUE,
                         ['form-group', 'mb-3', 'col-md-3']
                     );
 
@@ -209,7 +212,8 @@ if (isset($_POST['enviar'])) {
                             '0' => 'Deporte', 
                             '1' => 'Música', 
                             '2' => 'Cine'
-                        ], 
+                        ],
+                        Input::REQUIRED_FALSE,
                         ['form-group', 'mb-3', 'col-md-3']
                     );
 
@@ -219,7 +223,7 @@ if (isset($_POST['enviar'])) {
                         'Mensaje / comentarios:', 
                         'Escribe aquí tus comentarios...', 
                         $errors, // Puedes pasar un array de errores si es necesario
-                        false, // Indica que es requerido
+                        Input::REQUIRED_FALSE, // Indica que es requerido
                         ['form-group', 'mb-3', 'col-md-6'], 
                         ["form-control"]
                     );
